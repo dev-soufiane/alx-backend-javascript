@@ -6,6 +6,5 @@ export default function getResponseFromAPI() {
     } else {
       reject(new Error('Failed'));
     }
-  });
+  }).catch((error) => console.error(error));
 }
-
