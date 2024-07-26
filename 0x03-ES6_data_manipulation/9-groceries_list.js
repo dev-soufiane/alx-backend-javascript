@@ -1,15 +1,15 @@
-/**
- * Fetches a map of grocery names and their quantity.
- * @author ODIONYE OBIAJULU W <https://github.com/willy4opera>
- * @returns {Map<string, Number>}
- */
 export default function groceriesList() {
-  const values = [
+  const arrays = [
     ['Apples', 10],
     ['Tomatoes', 10],
     ['Pasta', 1],
     ['Rice', 1],
     ['Banana', 5],
   ];
-  return new Map(values);
+
+  const groceriesMap = new Map();
+  for (const elm of arrays) {
+    groceriesMap.set(elm[0], elm[1]);
+  }
+  return groceriesMap;
 }

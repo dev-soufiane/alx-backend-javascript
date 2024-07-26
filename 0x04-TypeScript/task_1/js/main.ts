@@ -1,51 +1,46 @@
-export interface Teacher {
-  readonly firstName: string;
-  readonly lastName: string;
-  fullTimeEmployee: boolean;
-  yearsOfExperience?: number;
-  location: string;
-  [index:string]: any;
+// Define Teacher interface with properties and index signature.
+interface Teacher {
+  readonly firstName: string,
+  readonly lastName: string,
+  fullTimeEmployee: boolean,
+  yearsOfExperience: number,
+  location: string,
+  [extraProperty: string]: any
 }
 
-export interface Directors extends Teacher {
+// Define Directors interface that extends Teacher and adds a property.
+interface Directors extends Teacher {
   numberOfReports: number;
 }
 
-export interface printTeacherFunction {
-  (firstName: string, lastName: string): string;
+// Define interface for function that takes in names and returns a string.
+interface printTeacherFunction {
+  (firstName: string, lastName: string ): string;
 }
 
-export function printTeacher(firstName: string, lastName: string): string {
-  return `${firstName[0]}. ${lastName}`;
-}
+// Implement printTeacherFunction interface as a constant variable.
+const printTeacher: printTeacherFunction = (firstName: string, lastName: string ): string => `${firstName.charAt(0)}. ${lastName}`;
 
-export interface IStudentClassConstructor {
-  new (firstName: string, lastName: string): IStudentClass;
-}
-
-export interface IStudentClass {
+// Define interface for class with two methods.
+interface classInterface {
   workOnHomework(): string;
   displayName(): string;
 }
 
-export class StudentClass implements IStudentClass {
-  private _firstName!: string;
-  private _lastName!: string;
+// Implement classInterface as a class with constructor and methods.
+class StudentClass implements classInterface {
+  firstName: string;
+  lastName: string;
 
   constructor(firstName: string, lastName: string) {
-    this._firstName = firstName;
-    this._lastName = lastName;
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+  displayName(): string {
+    return this.firstName;
   }
 
-  workOnHomework() {
-    return 'Currently working';
+  workOnHomework(): string {
+    return "Currently working";
   }
-
-  displayName() {
-    return this._firstName;
-  }
-}
-
-export function createStudent(ctor: IStudentClassConstructor, firstName: string, lastName: string): IStudentClass {
-  return new ctor(firstName, lastName);
 }

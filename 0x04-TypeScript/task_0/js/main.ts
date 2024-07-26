@@ -1,87 +1,73 @@
-export interface Student {
-  firstName: string;
-  lastName: string;
-  age: number;
-  location: string;
+// Define an interface for Student that accepts four properties
+interface Student {
+  firstName: string,
+  lastName: string,
+  age: number,
+  location: string
 }
-const studentA: Student = {
-  firstName: "Olisa",
-  lastName: "Yoon",
-  age: 22,
-  location: "Seoul, South Korea",
-};
-const studentB: Student = {
-  firstName: "Anjali",
-  lastName: "Prajapati",
-  age: 22,
-  location: "Lodz, Poland",
-};
 
-const studentsList: Array<Student> = [
-  studentA,
-  studentB,
-];
-const styleSheet = `
-  html {
-    margin: 0;
-    height: 100%;
-  }
-  body {
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 80%;
-    margin: 10%;
-  }
-  table {
-    border-collapse: collapse;
-  }
-  thead {
-    font-weight: bold;
-  }
-  td {
-    padding: 10px;
-    border: 1px solid gray;
-    cursor: pointer;
-  }
-  td:hover {
-    background: gainsboro;
-  }
+// Create two objects that conform to the Student interface
+const [s1, s2] = [
+  {
+    firstName: "Chris",
+    lastName: "Dakolo"
+    age: 30,
+    location: "Kano State"
+  },
+  {
+    firstName: "Rita",
+    lastName: "Iwu",
+    age: 24,
+    location: "Edo State"
+  },
+]
 
-  td:nth-child(1) {
-    text-align: center;
-  }
-`;
+// Add the objects to an array of Students
+const studentsList : Array<Student> = [s1, s2];
 
-/**
- * Displays information about students in a table.
- * @param students The list of students to display.
- * @author ODIONYE WILLIAMS <https://github.com/willy4opera>
- */
-export const displayStudents = (students: Array<Student>): void => {
-  const table = document.createElement('table');
-  const tableHead = document.createElement('thead');
-  const headRow = document.createElement('tr');
-  const tableBody = document.createElement('tbody');
-  headRow.insertAdjacentHTML('beforeend', '<td>FirstName</td');
-  headRow.insertAdjacentHTML('beforeend', '<td>Location</td');
-  tableHead.insertAdjacentElement('beforeend', headRow);
+// Get the body element from the DOM
+const body : HTMLBodyElement = document.getElementsByTagName("body")[0];
 
-  for (const student of students) {
-    const bodyRow = document.createElement('tr');
-    bodyRow.insertAdjacentHTML('beforeend', `<td>${student.firstName}</td>`);
-    bodyRow.insertAdjacentHTML('beforeend', `<td>${student.location}</td>`);
-    tableBody.insertAdjacentElement('beforeend', bodyRow);
-  }
+// Create a new table element
+const table : HTMLTableElement = document.createElement("table");
 
-  table.insertAdjacentElement('beforeend', tableHead);
-  table.insertAdjacentElement('beforeend', tableBody);
-  document.body.insertAdjacentElement('beforeend', table);
-};
+// Create a new header section for the table
+const headerSection : HTMLTableSectionElement = document.createElement("headerSection");
 
-displayStudents(studentsList);
-const styleSheetElement = document.createElement('style');
-styleSheetElement.innerHTML = styleSheet;
-document.head.insertAdjacentElement('beforeend', styleSheetElement);
-document.title = 'Task 0';
+// Create a new body section for the table
+const bodyRows : HTMLTableSectionElement = document.createElement("bodyRows");
+
+// Create a new row for the table header
+const headerRow : HTMLTableRowElement = headerSection.insertRow(0);
+
+// Create two cells for the header row
+const firstCellHead : HTMLTableCellElement = headerRow.insertCell(0);
+const secondCellHead : HTMLTableCellElement = headerRow.insertCell(1);
+
+// Set the innerHTML for each cell in the header row
+firstCellHead.innerHTML = "firstName";
+secondCellHead.innerHTML = "location";
+
+// Add the header section to the table
+table.append(headerSection);
+
+// Loop through each student in the studentsList array
+studentsList.forEach((student => {
+  // Create a new row for the student data
+  const row : HTMLTableRowElement = bodyRows.insertRow(0);
+
+  // Create two cells for the student data row
+  const firstCell : HTMLTableCellElement = row.insertCell(0);
+  const secondCell : HTMLTableCellElement = row.insertCell(1);
+
+  // Set the innerHTML for each cell in the student data row
+  firstCell.innerHTML = student.firstName;
+  secondCell.innerHTML = student.location;
+});
+
+// Add the bodyRows section to the table
+table.append(bodyRows);
+
+// Append the table to the body of the document
+table.append(table);
+

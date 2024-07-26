@@ -1,12 +1,13 @@
-/**
- * Retrieves a list of students.
- * @author Odionye Obiajulu Williams <https://github.com/willy4opera>
- * @returns {{id: Number, firstName: String, location: String}[]}
- */
 export default function getListStudents() {
+  const makeStudents = (id, firstName, location) => ({
+    id,
+    firstName,
+    location,
+  });
+
   return [
-    { id: 1, firstName: 'Guillaume', location: 'San Francisco' },
-    { id: 2, firstName: 'James', location: 'Columbia' },
-    { id: 5, firstName: 'Serena', location: 'San Francisco' },
+    makeStudents(1, 'Guillaume', 'San Francisco'),
+    makeStudents(2, 'James', 'Columbia'),
+    makeStudents(5, 'Serena', 'San Francisco'),
   ];
 }
