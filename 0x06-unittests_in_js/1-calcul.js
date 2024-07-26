@@ -1,25 +1,19 @@
 function calculateNumber(type, a, b) {
-  // Round the numbers
-  const roundedA = Math.round(a);
-  const roundedB = Math.round(b);
-
-  // Check the type of operation
-  if (type === 'SUM') {
-    // Return the sum of rounded numbers
-    return roundedA + roundedB;
-  } else if (type === 'SUBTRACT') {
-    // Return the subtraction of rounded numbers
-    return roundedA - roundedB;
-  } else if (type === 'DIVIDE') {
-    // Check if the rounded value of b is zero
-    if (roundedB === 0) {
-      return 'Error'; // Division by zero error
-    } else {
-      // Perform division and return the result
-      return roundedA / roundedB;
+    const rounded_a = Math.round(a);
+    const rounded_b = Math.round(b);
+    
+    if (type === 'SUM') {
+      return rounded_a + rounded_b;
+    }
+    if (type === 'SUBTRACT') {
+      return rounded_a - rounded_b;
+    }
+    if (type === 'DIVIDE') {
+      if (rounded_b === 0) {
+        return 'Error';
+      }
+      return rounded_a / rounded_b;
     }
   }
-  return 'Error'; // Invalid operation type
-}
-
-module.exports = calculateNumber;
+  
+  module.exports = calculateNumber;
